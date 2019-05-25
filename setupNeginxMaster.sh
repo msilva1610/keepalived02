@@ -8,7 +8,7 @@ echo -e "-- Atualizando packages list\n"
 sudo apt-get update -y -qq
 # Instalar nginx and keepalived ##########################################################################
 echo -e "-- Instalar nginx e keepalived\n"
-sudo apt-get install nginx keepalived -y
+sudo apt-get install nginx keepalived -y -qq
 echo -e "-- Criando index.html do MASTER\n"
 # HTML #########################################################################
 echo -e "-- Criando index.html file\n"
@@ -18,7 +18,7 @@ sudo cat > /var/www/html/index.html <<EOD
 <title>${HOSTNAME}</title>
 </head>
 <body>
-<h1>${HOSTNAME}</h1>
+<h1>Hostname: ${HOSTNAME}</h1>
 <p>Eu sou o NGINX MASTER!</p>
 </body>
 </html>
@@ -37,14 +37,14 @@ vrrp_instance VRRP1 {
     state MASTER
     interface enp0s8
     virtual_router_id 100
-    priority 100
+    priority 101
     advert_int 1
     authentication {
         auth_type PASS
         auth_pass 9999
     }
     virtual_ipaddress {
-        192.168.60.10/24
+        192.168.50.30/24
     }
     track_script {
         checknginx

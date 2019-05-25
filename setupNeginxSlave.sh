@@ -18,7 +18,7 @@ sudo cat > /var/www/html/index.html <<EOD
 <title>${HOSTNAME}</title>
 </head>
 <body>
-<h1>${HOSTNAME}</h1>
+<h1>Hostname: ${HOSTNAME}</h1>
 <p>Eu sou o NGINX SLAVE!</p>
 </body>
 </html>
@@ -44,7 +44,7 @@ vrrp_instance VRRP1 {
         auth_pass 9999
     }
     virtual_ipaddress {
-        192.168.60.10/24
+        192.168.50.30/24
     }
     track_script {
         checknginx
@@ -60,5 +60,5 @@ sudo systemctl restart keepalived
 
 # END ##########################################################################
 echo -e "-- ----------- --"
-echo -e "-- END NGINX MASTER --"
+echo -e "-- END NGINX SLAVE --"
 echo -e "-- ----------- --"
